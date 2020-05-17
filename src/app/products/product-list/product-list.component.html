@@ -45,14 +45,18 @@
                  [style.margin.px]='imageMargin'
                  *ngIf='showImages'>
           </td>
-          <td>{{ product.productName }}</td>
+          <td>
+            <a [routerLink]="['/products', product.productId]">
+              {{ product.productName }}
+            </a>
+          </td>
           <td>{{ product.productCode | uppercase | convertTpSpaces: '-' }}</td>
           <td>{{ product.releaseDate }}</td>
           <td>{{ product.price | currency: 'USD':'symbol':'1.2-2' }}</td>
           <td>
             <app-star [rating]="product.starRating"
-            (ratingClicked)='onRaitingClicked($event)'>
-            <!--(notify)="onNotify($event)"-->
+                      (ratingClicked)='onRaitingClicked($event)'>
+              <!--(notify)="onNotify($event)"-->
             </app-star>
           </td>
         </tr>
