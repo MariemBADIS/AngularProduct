@@ -10,6 +10,7 @@ import {StarComponent} from './shared/star/star.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductDetailComponent} from './products/product-details/product-detail.component';
 import {RouterModule} from '@angular/router';
+import {ProductDetailGuard} from './products/product-detail.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,11 @@ import {RouterModule} from '@angular/router';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      {
+        path: 'products/:id',
+        canActivate: [ProductDetailGuard],
+        component: ProductDetailComponent
+      },
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', component: HomeComponent }
